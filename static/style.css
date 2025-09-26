@@ -1,0 +1,43 @@
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.player {
+  margin: 20px;
+}
+
+.controls button {
+  margin: 10px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #2196f3;
+  color: white;
+  transition: 0.3s;
+}
+
+.controls button:hover {
+  background: #1976d2;
+}
+
+#result {
+  margin-top: 20px;
+}
+body {
+  text-align: center;
+    margin: 40px; 
+    font-family:'Times New Roman', Times, serif;  
+    background-color: #f9f9f9; 
+    background: url("/static/bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+h1, h2, h3 {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+}

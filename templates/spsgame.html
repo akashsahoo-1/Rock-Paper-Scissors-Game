@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stone Paper Scissors</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <border>
+  <h1>Stone Paper Scissors</h1>
+
+  <div class="game">
+    <div class="player">
+      <h2>You</h2>
+      <img id="userChoice" src="{{ url_for('static', filename='user.png') }}" width="100">
+    </div>
+
+    <div class="vs">
+      <img src="{{ url_for('static', filename='vs.png') }}" width="80">
+    </div>
+
+    <div class="player">
+      <h2>Computer</h2>
+      <img id="computerChoice" src="{{ url_for('static', filename='computer.png') }}" width="100">
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="play('stone')">Stone</button>
+    <button onclick="play('paper')">Paper</button>
+    <button onclick="play('scissor')">Scissor</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    function play(choice) {
+      fetch("/play", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({choice: choice})
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("userChoice").src = "/static/" + data.user + ".png";
+        document.getElementById("computerChoice").src = "/static/" + data.computer + ".png";
+
+        if (data.result === "win") {
+          document.getElementById("result").innerHTML =
+            "<img src='/static/youwin.png' width='200'>";
+        } else if (data.result === "lose") {
+          document.getElementById("result").innerHTML =
+            "<img src='/static/youlose.png' width='200'>";
+        } else {
+          document.getElementById("result").innerHTML = "<h2>It's a Draw!</h2>";
+        }
+      });
+    }
+  </script>
+  </border>
+</body>
+</html>
